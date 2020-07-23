@@ -30,7 +30,7 @@ class MainTest:
                 for i in range(len(phone_number)):
                     excutor.submit(self.test_main, phone_number[i])
                     # time.sleep(3)
-                    # excutor.submit(start.TestStart().save_app_log, phone_number[i], 'qimiao_log')
+                    excutor.submit(start.TestStart().save_app_log, phone_number[i], 'qimiao_log')
             else:
                 print('adb无法连接到手机~~~')
                 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
