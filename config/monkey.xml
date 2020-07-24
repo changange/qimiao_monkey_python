@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Monkey>
+    <Doaction>
+        <!--三个值相加等于1-->
+        <click>0.8</click>              <!--点击占比-->
+        <back>0.1</back>                <!--返回键占比-->
+        <sliding>0.1</sliding>          <!--滑动占比-->
+    </Doaction>
+</Monkey>
