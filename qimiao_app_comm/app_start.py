@@ -75,8 +75,10 @@ class TestStart:
 
     ##  监听日志
     def save_app_log(self, cmd_name, log_file):
-        cmd_save_log = f'adb -s {cmd_name} logcat -v threadtime -f /data/local/tmp/{log_file}/log_{cmd_name} -n 5 -r 200 -s Unity *:I'
-        print(cmd_save_log)
+        print('启动监听日志')
+        # cmd_save_log = f'adb -s {cmd_name} logcat -v threadtime -f /data/local/tmp/{log_file}/log_{cmd_name} -n 10 -r 200 -s Unity *:I'
+        cmd_save_log = f'adb -s {cmd_name} logcat -v threadtime -f /data/local/tmp/{log_file}/log_{cmd_name} -n 10 -r 2000 *:E'
+        print(f'----{cmd_save_log}')
         cc = os.popen(cmd_save_log)
         # for i in len(cc.readlines()):
         #     print(i)

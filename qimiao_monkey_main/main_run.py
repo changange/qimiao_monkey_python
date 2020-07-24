@@ -24,16 +24,27 @@ class MainTest:
 
     def qimiao_threading_excution(self):
         phone_number = start.TestStart().connectMoblie()
-
-        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as excutor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as excutor:
             if len(phone_number) >= 1:
                 for i in range(len(phone_number)):
                     excutor.submit(self.test_main, phone_number[i])
-                    # time.sleep(3)
+                    time.sleep(3)
                     excutor.submit(start.TestStart().save_app_log, phone_number[i], 'qimiao_log')
             else:
                 print('adb无法连接到手机~~~')
                 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
+    # def qimiao_threading_excution(self):
+    #     phone_number = start.TestStart().connectMoblie()
+    #     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as excutor:
+    #         if len(phone_number) >= 1:
+    #             for i in range(len(phone_number)):
+    #                 excutor.submit(self.test_main, phone_number[i])
+    #                 time.sleep(3)
+    #                 excutor.submit(start.TestStart().save_app_log, phone_number[i], 'qimiao_log')
+    #         else:
+    #             print('adb无法连接到手机~~~')
+    #             print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
 
 
