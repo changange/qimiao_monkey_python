@@ -12,6 +12,7 @@ class RandomAction:
         self.display = self.d.device_info["display"]
         self.width = self.display['width']
         self.height = self.display['height']
+        print(f'{self.width}--{self.height}')
 
     #   随意点击、滑动
     def radom_click_liding(self):
@@ -36,7 +37,12 @@ class RandomAction:
             if datetime.datetime.now().second%15 == 0:
                 print('30秒已到，点击确定~~~')
                 self.d.click(self.width * 0.686, self.height * 0.61)
-                print('点击完成了~~~~~~~~')
+                print('确定 点击完成了~~~~~~~~')
+
+            if datetime.datetime.now().second % 20== 0:
+                print('20秒时间已到，点击取消~~~')
+                self.d.click(self.width * 0.299, self.height * 0.61)
+                print(f'取消 点击完成了~~~~~~~~{self.width * 0.29}<-->{self.height * 0.61}')
 
             #   优化项 有些手机上有虚拟home键，点到这个键后重新启动APP
             if H >= math.trunc(self.height*0.947) and math.trunc(self.width*0.2) <= W and W <= math.trunc(self.width*0.8):
@@ -51,8 +57,13 @@ class RandomAction:
             h_stat = random.randint(math.trunc(0.0468*self.height), self.height)
             w_end = random.randint(0, self.width)
             h_end = random.randint(0, self.height)
-            print(self.cmd_name)
-            self.d.swipe(w_stat, h_stat, w_end, h_end)
+            print(f'滑动的设备：{self.cmd_name}')
+            print(f'当前滑动的坐标：{w_stat}<->{h_stat}：{w_end}<-->{h_end}')
+            try:
+                self.d.swipe(w_stat, h_stat, w_end, h_end)
+            except Exception as e:
+                print('滑动可能报错了~~~')
+                print(e)
             # print(f'滑动位置{w_stat}：{h_stat}<--->{w_end}：{h_end}')
             print('滑动-->操作执行完成')
 

@@ -30,7 +30,7 @@ class TestStart:
         d = self.connCMD(cmd_name)
 
         d.app_start('com.qmnl.qmpd', activity='com.qmnl.pati.ui.SplashActivity')
-        s = self.sessionConn(cmd_name)
+        # s = self.sessionConn(cmd_name)
         # time.sleep(2)
 
         # for i in range(5):
