@@ -24,7 +24,7 @@ class MainTest:
 
     def qimiao_threading_excution(self):
         phone_number = start.TestStart().connectMoblie()
-        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as excutor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=6) as excutor:
             if len(phone_number) >= 1:
                 for i in range(len(phone_number)):
                     excutor.submit(self.test_main, phone_number[i])

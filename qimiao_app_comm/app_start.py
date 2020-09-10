@@ -76,8 +76,8 @@ class TestStart:
     ##  监听日志
     def save_app_log(self, cmd_name, log_file):
         print('启动监听日志')
-        # cmd_save_log = f'adb -s {cmd_name} logcat -v threadtime -f /data/local/tmp/{log_file}/log_{cmd_name} -n 10 -r 200 -s Unity *:I'
-        cmd_save_log = f'adb -s {cmd_name} logcat -v threadtime -f /data/local/tmp/{log_file}/log_{cmd_name} -n 10 -r 2000 *:E'
+        cmd_save_log = f'adb -s {cmd_name} logcat -v threadtime -f /data/local/tmp/{log_file}/log_{cmd_name} -n 10 -r 2000 -s Unity *:E'
+        # cmd_save_log = f'adb -s {cmd_name} logcat -v threadtime -f /data/local/tmp/{log_file}/log_{cmd_name} -n 10 -r 2000 *:I'
         print(f'----{cmd_save_log}')
         cc = os.popen(cmd_save_log)
         # for i in len(cc.readlines()):
@@ -87,6 +87,4 @@ class TestStart:
 
 if __name__ == '__main__':
     t = TestStart()
-    t.delete_mobile_log('LFLBB19418208291', 'qimiao_log')
-    # t.clear_cache_log('UKPFSCEQ99999999')
-    # t.save_app_log('UKPFSCEQ99999999', 'qimiao_log')
+    t.sessionConn('UKPFSCEQ99999999').click()
