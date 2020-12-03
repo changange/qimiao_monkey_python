@@ -1,8 +1,9 @@
 import uiautomator2 as u2
 import os
-import time
+import time, datetime
 
 class TestStart:
+    old_time = datetime.datetime.now()
 
     def connCMD(self, cmd_name):
         # return u2.connect_usb()
@@ -87,4 +88,9 @@ class TestStart:
 
 if __name__ == '__main__':
     t = TestStart()
-    t.sessionConn('UKPFSCEQ99999999').click()
+    # t.sessionConn('UKPFSCEQ99999999').click()
+    now = datetime.datetime.now()
+    time.sleep(3)
+    old = datetime.timedelta(seconds=100)
+    cha = now-old
+    print(cha.second)

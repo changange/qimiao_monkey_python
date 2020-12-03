@@ -7,6 +7,7 @@ import time
 import qimiao_app_comm.qimiao_comm as comm
 
 class RandomAction:
+    old_time = 0;
 
     def __init__(self, cmd_name):
         self.cmd_name = cmd_name
@@ -50,6 +51,11 @@ class RandomAction:
                 print('30秒已到，点击确定~~~')
                 self.d.click(self.width * 0.686, self.height * 0.61)
                 print('确定 点击完成了~~~~~~~~')
+
+            if datetime.datetime.now().second%20 == 0:
+                print('20秒已到，点击关闭~~~')
+                self.d.click(self.width * 0.88, self.height * 0.274)
+                print('关闭 点击完成了~~~~~~~~')
 
             if datetime.datetime.now().second % 5== 0:
                 print('5秒时间已到，点击取消~~~')
@@ -99,15 +105,25 @@ class RandomAction:
             self.clickRetrn.set_count(1)
 
         if resS + resTD <= num and num < resB + resS + resTD and resS + resTD != resB + resS + resTD:
-            #   返回
-            if self.clickRetrn.get_count() == 1:
-                self.d.press('back')
-                print('返回-->操作执行完成')
-
-                #   不可以连续两次点击返回键
-                self.clickRetrn.set_count(0)
+            ##  判断是否连续两次返回
+            if self.old_time == 0:
+                self.cc =  500
             else:
-                print('不可以连续两次点击返回键~~~')
+                self.now_time = datetime.datetime.now()
+                self.cha_time = self.now_time - self.old_time
+                self.cc = self.cha_time.seconds
+                print(f"========={self.cc}")
+
+            if self.cc > 2:
+                #   返回
+                if self.clickRetrn.get_count() ==1:
+                    self.old_time = datetime.datetime.now()
+                    self.d.press('back')
+                    print('返回-->操作执行完成')
+                    #   不可以连续两次点击返回键
+                    self.clickRetrn.set_count(0)
+                else:
+                    print('不可以连续两次点击返回键~~~')
 
     def read_config(self, path):
         res=[]
@@ -123,6 +139,6 @@ class RandomAction:
 
 if __name__ == '__main__':
     # r = RandomAction('UKPFSCEQ99999999')
-    r = RandomAction('LFLBB19418208291')
+    r = RandomAction('a302ac9c')
     while True:
         r.radom_click_liding()
